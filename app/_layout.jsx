@@ -3,10 +3,11 @@ import { StyleSheet, Text, View } from 'react-native';
 import { SplashScreen, Stack } from 'expo-router';
 import { useFonts } from 'expo-font';
 import { useEffect} from 'react'; 
-
+import { UserContext } from './UserContext';
 SplashScreen.preventAutoHideAsync();
 
 const RootLayout = () => {
+    const user = {email: "test@test.com"};
 
     const [fontsLoaded, error] = useFonts({
         "Poppins-Black": require("../assets/fonts/Poppins-Black.ttf"),
@@ -35,11 +36,14 @@ const RootLayout = () => {
     }
 
     return (
+        <UserContext.Provider value={user}>
         <Stack>
             <Stack.Screen name='index' options={{headerShown: false}}>
 
             </Stack.Screen>
         </Stack>
+        </UserContext.Provider>
+
     )
 }
 
